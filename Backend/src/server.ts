@@ -11,10 +11,10 @@ import apiRoutes from "../src/minhaAPI/minhaApi";// Importando as rotas da API
 dotenv.config(); // Carrega as variáveis do .env
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 9999; // Define a porta do servidor
 
 // Middleware para interpretar JSON
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Rotas da API
 app.use('/api', apiRoutes);
