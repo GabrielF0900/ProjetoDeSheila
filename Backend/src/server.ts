@@ -1,23 +1,30 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import apiRoutes from "../src/minhaAPI/minhaApi";// Importando as rotas da API
+
+
+
+
+
+
+dotenv.config(); // Carrega as variáveis do .env
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Rota de teste
+// Middleware para interpretar JSON
+app.use(bodyParser.json());
+
+// Rotas da API
+app.use('/api', apiRoutes);
+
+// Rota simples para teste
 app.get('/', (req, res) => {
   res.send('✅ Servidor funcionando!');
 });
 
-// Conexão simples com SQLite
-import sqlite3 from 'sqlite3';
-const db = new sqlite3.Database('./banco.db', (err) => {
-  if (err) {
-    console.error('❌ Erro no banco de dados:', err);
-  } else {
-    console.log('📊 Conectado ao banco SQLite');
-  }
-});
-
+// Inicia o servidor
 app.listen(PORT, () => {
   console.log(`🔥 Servidor rodando em http://localhost:${PORT}`);
 });
