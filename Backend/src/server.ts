@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import usuarioRoutes from './minhaAPI/routes/usuarioRoutes'; // Suas rotas
+import { Login } from './minhaAPI/controllers/login/login';
 
 dotenv.config(); // Carrega .env
 
