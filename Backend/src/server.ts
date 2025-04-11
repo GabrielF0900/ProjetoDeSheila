@@ -1,9 +1,9 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import usuarioRoutes from './minhaAPI/routes/usuarioRoutes'; // Suas rotas
-import { Login } from './minhaAPI/controllers/login/login';
+import express from "express";
+import dotenv from "dotenv";
+import usuarioRoutes from "./minhaAPI/routes/usuarioRoutes";
+import path from "path";
 
-dotenv.config(); // Carrega .env
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const app = express();
 const PORT = 9999;
@@ -12,11 +12,11 @@ const PORT = 9999;
 app.use(express.json());
 
 // 👇 Usa as rotas de usuário
-app.use('/', usuarioRoutes);
+app.use("/", usuarioRoutes);
 
 // Rota simples de teste
-app.get('/', (req, res) => {
-  res.send('✅ Servidor funcionando!');
+app.get("/", (req, res) => {
+  res.send("✅ Servidor funcionando!");
 });
 
 app.listen(PORT, () => {

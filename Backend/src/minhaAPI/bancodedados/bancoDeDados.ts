@@ -3,8 +3,8 @@ import { open } from "sqlite";
 import path from "path";
 
 // Caminho para o banco de dados
-const dbPath = path.resolve(
-  "C:/Users/gabri/OneDrive/Desktop/Projetos/ProjetoDeSheila/BancodeDados",
+const dbPath = path.resolve(__dirname,
+  "../../../../BancodeDados",
   "database.sqlite"
 );
 
@@ -17,9 +17,10 @@ async function connectDB() {
     });
 
     console.log("Conectado ao banco de dados SQLite!");
+    console.log("Caminho do banco de dados:", dbPath);
     return db;
-  } catch (error) {
-    console.error("Erro ao conectar ao banco:", error);
+  } catch (error: any) {
+    console.error("Erro ao conectar ao banco:", error.message, error.stack);
     process.exit(1);
   }
 }
